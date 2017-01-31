@@ -1,0 +1,36 @@
+html {
+  overflow: hidden;  
+  height:100%;
+  font-family: Amiko;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+header {
+  color: floralwhite;
+  background-color: rgb(49, 49, 49);    
+}
+
+.main {
+  background-color: rgb(240, 243, 245);   
+  min-height:100%;
+}
+
+md-input-container, .md-checkbox-label {
+  width: 275px;
+}
+
+label.md-focused, label.md-float:not(.md-empty) {
+  display: none !important;
+}
+
+.md-checkbox-label {
+  line-height: inherit !important;
+}
+
+.md-tooltip {
+  height: auto !important;
+}

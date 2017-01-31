@@ -1,0 +1,78 @@
+<div fxFlex="40px"></div>
+
+<div fxLayout="row" fxLayoutGap.gt-sm="50px" fxLayoutGap.sm="0px" fxLayoutAlign="center" fxFlex fxFlexFill color="primary">
+    <div fxLayout="column" fxHide.sm="true" fxHide.gt-sm="false" fxFlex="450px" fxFlexFill>
+        <div fxFlex>
+            <h2 class="title">Thousands of investors are earning great returns from their investment</h2>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxFlex fxLayoutWrap="wrap">
+            <div fxFlex="48%" *ngFor="let card of cards">
+                <md-card>
+                    <md-card-header>
+                        <img md-card-avatar src="/img/tick_icon.svg">
+                        <md-card-title>{{card.title}}</md-card-title>
+                    </md-card-header>
+                    <img md-card-image alt="Main image" height="120px" [src]="card.img">
+                </md-card>
+            </div>
+        </div>
+    </div>
+    <div fxFlexLayout="column" fxFlex="350px" fxLayoutAlign="center">
+        <md-tab-group fxFlex>
+            <md-tab label="Account details" disabled>
+                <div [formGroup]="form" class="tab-content" fxLayout="column">
+                    <div fxFlex="30px"></div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-icon svgIcon="mail"></md-icon>
+                        <md-input-container mdTooltip="Please enter email" mdTooltipPosition="above" #t1="mdTooltip">
+                            <input md-input formControlName="email" placeholder="example@myemail.com" type="email" />
+                            <span md-prefix>Email:</span>
+                        </md-input-container>
+                        <md-icon (mouseover)="t1.show()">{{form?.get('email').valid ? 'check' : 'info'}}</md-icon>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-icon svgIcon="mail" [ngStyle]="{visibility: 'hidden'}"></md-icon>
+                        <md-input-container mdTooltip="Same as email above" mdTooltipPosition="above" #t2="mdTooltip">
+                            <input md-input formControlName="email2" placeholder="example@myemail.com" type="email" />
+                            <span md-prefix>Confirm email:</span>
+                        </md-input-container>
+                        <md-icon (mouseover)="t2.show()">{{(!form?.errors?.equalEmails && form?.get('email').valid) ? 'check' : 'info'}}</md-icon>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-icon svgIcon="padlock"></md-icon>
+                        <md-input-container mdTooltip="Include a lower and an upper case letter, a number and a special character" mdTooltipPosition="above"
+                            #t3="mdTooltip">
+                            <input md-input formControlName="password" #ctrl placeholder="• • • • • • •" type="password" />
+                            <span md-prefix>Password:</span>
+                        </md-input-container>
+                        <md-icon (mouseover)="t3.show()">{{form?.get('password').valid ? 'check' : 'info'}}</md-icon>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <md-icon svgIcon="pin"></md-icon>
+                        <md-input-container mdTooltip="Please enter a 5-digit number" mdTooltipPosition="above" #t4="mdTooltip">
+                            <input md-input formControlName="pin" placeholder="5-digit number" type="number" />
+                            <span md-prefix>PIN:</span>
+                        </md-input-container>
+                        <md-icon (mouseover)="t4.show()">{{form?.get('pin').valid ? 'check' : 'info'}}</md-icon>
+                    </div>
+                    <div fxLayout="row" fxFlex="45px" fxLayoutAlign="space-around start">
+                        <md-checkbox color="warn">
+                            I am happy to receive news and special offers from Landbay from time to time.
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around start">
+                        <md-checkbox formControlName="terms" color="warn">
+                            Before you can proceed you must read and accept our Terms &amp; Conditions and confirm that you understand that this is an
+                            investment account and not a savings account. Your capital is at risk.
+                        </md-checkbox>
+                    </div>
+                    <div fxLayout="row" fxFlex="100px" fxLayoutAlign="space-around center">
+                        <button md-raised-button (click)="onContinueClick()" color="warn" [disabled]="!form.valid">Continue</button>
+                    </div>
+                </div>
+            </md-tab>
+            <md-tab label="Personal details" disabled></md-tab>
+        </md-tab-group>
+
+    </div>
+</div>
